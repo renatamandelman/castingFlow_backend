@@ -2,9 +2,9 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import indexRoutes from "./routes/index.js";
-import productsRoutes from "./routes/products.js";
-import categoriesRoutes from "./routes/categories.js";
-import ordersRoutes from "./routes/orders.js";
+import modelsRoutes from "./routes/models.js";
+import recruitersRoutes from "./routes/recruiters.js";
+
 
 /* Clear the console  */
 console.log("\x1Bc");
@@ -16,7 +16,7 @@ import { connectDb } from "./db.js";
 connectDb();
 
 /* Settings */
-app.set("port", process.env.PORT || 4000);
+app.set("port", process.env.PORT || 4001);
 
 /* Middlewares */
 app.use(express.urlencoded({ extended: true }));
@@ -38,9 +38,9 @@ app.use(
 
 /* Routes */
 app.use("/", indexRoutes);
-app.use("/products", productsRoutes);
-app.use("/categories", categoriesRoutes);
-app.use("/orders", ordersRoutes);
+app.use("/models", modelsRoutes);
+app.use("/recruiters", recruitersRoutes);
+
 
 /* Error handler  */
 // catch 404 and forward to error handler
