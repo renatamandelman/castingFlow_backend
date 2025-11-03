@@ -58,4 +58,4 @@ const castingSchema = new Schema({
   timestamps: true // Añade createdAt y updatedAt automáticamente
 });
 
-module.exports = mongoose.model('Casting', castingSchema);
+export default mongoose.model("Casting", castingSchema, "Castings");

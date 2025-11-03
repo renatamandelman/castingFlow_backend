@@ -40,4 +40,4 @@ const applicationSchema = new Schema({
 // Para asegurar que un modelo solo pueda aplicar UNA VEZ al mismo casting
 applicationSchema.index({ casting: 1, model: 1 }, { unique: true });
 
-module.exports = mongoose.model('Application', applicationSchema);
+export default mongoose.model("Application", applicationSchema, "Applications");
