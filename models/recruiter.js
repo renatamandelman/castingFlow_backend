@@ -37,7 +37,7 @@ const recruiterSchema = new Schema({
   },
   companyLogoUrl: { 
     type: String,
-    default: 'logo.png' // URL por defecto
+    default: 'https://static.vecteezy.com/system/resources/thumbnails/050/544/573/small/the-logo-for-a-company-that-sells-financial-products-free-png.png' // URL por defecto
   },
   postedCastings: [{
     type: Schema.Types.ObjectId,
