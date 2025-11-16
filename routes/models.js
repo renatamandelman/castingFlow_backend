@@ -17,7 +17,7 @@ const findOneModel = async (req, res) => {
     const model = await Model.findOne({ _id: id });
     return res.status(200).send({ message: "modelo encontrado", model });
   } catch (error) {
-    return res.status(501).send({ message: "error al obtener los modelos" });
+    return res.status(501).send({ message: "error al obtener al modelo" });
   }
 };
 const addModel = async (req, res) => {
