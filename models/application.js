@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 const applicationSchema = new Schema({
   
-  status: { // El estado de la postulación, que el reclutador puede cambiar
+  status: { 
     type: String,
-    enum: ['pending', 'shortlisted', 'rejected'], // Pendiente, Preseleccionado, Rechazado
+    enum: ['pending', 'shortlisted', 'rejected'], 
     default: 'pending'
   },
   message: { // Mensaje opcional del modelo al reclutador
@@ -12,29 +12,26 @@ const applicationSchema = new Schema({
     trim: true,
     maxlength: [500, 'El mensaje no puede exceder los 500 caracteres.']
   },
-  submittedPhotos: { // Fotos que el modelo envía específicamente para este casting
-    type: [String], // Un array de URLs de imágenes
+  submittedPhotos: { 
+    type: [String], 
     default: []
   },
 
-  // --- Relaciones (Las más importantes) ---
 
-  // ¿A qué casting se está postulando?
   casting: {
     type: Schema.Types.ObjectId,
-    ref: 'Casting', // Referencia al modelo 'Casting'
+    ref: 'Casting', 
     required: true
   },
 
-  // ¿Qué modelo se está postulando?
   model: {
     type: Schema.Types.ObjectId,
-    ref: 'Model', // Referencia al modelo 'Model'
+    ref: 'Model', 
     required: true
   }
   
 }, {
-  timestamps: true // Añade createdAt (para saber cuándo aplicó) y updatedAt
+  timestamps: true 
 });
 
 // Para asegurar que un modelo solo pueda aplicar UNA VEZ al mismo casting

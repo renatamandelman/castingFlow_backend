@@ -5,9 +5,6 @@ import Casting from '../models/Casting.js';
 
 const router = Router();
 
-// --- Rutas CRUD para Applications ---
-
-// POST /api/applications - Crea una nueva aplicación (un modelo aplica a un casting)
 router.post("/", async (req, res) => {
   const body = req.body;
   try {
@@ -17,7 +14,6 @@ router.post("/", async (req, res) => {
       return res.status(400).send({ message: 'Faltan IDs de Casting o Modelo.' });
     }
 
-    // Verificar si el modelo o casting existen
     const existingModel = await Model.findById(model);
     if (!existingModel) {
       return res.status(404).send({ message: 'El ID de modelo no existe.' });
@@ -27,7 +23,6 @@ router.post("/", async (req, res) => {
       return res.status(404).send({ message: 'El ID de casting no existe.' });
     }
 
-    // Verificar si ya aplicó (usando el index unique que definimos en el modelo)
     const existingApplication = await Application.findOne({ casting, model });
     if (existingApplication) {
       return res.status(409).send({ message: 'Este modelo ya aplicó a este casting.' }); // 409 Conflict
@@ -36,7 +31,6 @@ router.post("/", async (req, res) => {
     const newApplication = new Application(body);
     await newApplication.save();
 
-    // Actualizar las referencias en Modelo y Casting
     existingModel.applications.push(newApplication._id);
     await existingModel.save();
     existingCasting.applications.push(newApplication._id);
@@ -127,6 +121,7 @@ router.delete("/:id", async (req, res) => {
 router.get("/model/:modelId", async (req, res) => {
   const { modelId } = req.params;
   try {
+   
     const applications = await Application.find({ model: modelId })
       .populate({
           path: 'casting',

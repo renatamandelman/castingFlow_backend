@@ -6,6 +6,7 @@ import modelsRoutes from "./routes/models.js";
 import recruitersRoutes from "./routes/recruiters.js";
 import applicationsRoutes from './routes/application.js'
 import castingsRoutes from './routes/casting.js'
+import authRoutes from "./routes/auth.js";
 
 
 /* Clear the console  */
@@ -44,6 +45,7 @@ app.use("/models", modelsRoutes);
 app.use("/recruiters", recruitersRoutes);
 app.use("/castings", castingsRoutes);
 app.use("/applications", applicationsRoutes);
+app.use("/auth", authRoutes);
 
 
 /* Error handler  */
