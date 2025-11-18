@@ -14,7 +14,7 @@ const castingSchema = new Schema({
     trim: true,
     maxlength: [2000, 'La descripción no puede exceder los 2000 caracteres.']
   },
-  requirements: { // Requisitos (ej: altura, talle, habilidades)
+  requirements: { 
     type: String,
     trim: true,
     maxlength: [1000, 'Los requisitos no pueden exceder los 1000 caracteres.']
@@ -24,38 +24,33 @@ const castingSchema = new Schema({
     required: [true, 'La ubicación es obligatoria.'],
     trim: true
   },
-  payRate: { // La paga por el trabajo
+  payRate: { 
     type: Number,
     required: [true, 'La paga es obligatoria.'],
     min: [0, 'La paga no puede ser un número negativo.']
   },
-  jobDate: { // Fecha del trabajo o del casting
+  jobDate: { 
     type: Date,
     required: [true, 'La fecha del trabajo es obligatoria.']
   },
-  status: { // Para saber si el casting sigue abierto o ya cerró
+  status: {
     type: String,
     enum: ['open', 'closed'],
     default: 'open'
   },
   
-  // --- Relaciones ---
-
-  // ¿Qué reclutador publicó este casting?
   recruiter: {
-    type: Schema.Types.ObjectId, // Guarda el ID del reclutador
-    ref: 'Recruiter', // Hace referencia al modelo 'Recruiter' que creamos
+    type: Schema.Types.ObjectId, 
+    ref: 'Recruiter',
     required: true
   },
-  
-  // ¿Quiénes se postularon a este casting?
-  applications: [{
-    type: Schema.Types.ObjectId, // Es un array de IDs de postulaciones
-    ref: 'Application' // Hace referencia al modelo 'Application'
+    applications: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Application'
   }]
 
 }, {
-  timestamps: true // Añade createdAt y updatedAt automáticamente
+  timestamps: true 
 });
 
 export default mongoose.model("Casting", castingSchema, "Castings");

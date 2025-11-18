@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Casting from '../models/Casting.js';
+import Casting from '../models/casting.js';
 import Recruiter from '../models/recruiter.js'; 
 
 const router = Router();
