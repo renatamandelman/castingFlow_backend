@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import Application from '../models/application.js';
 import Model from '../models/models.js';
-import Casting from '../models/Casting.js';
+import Casting from '../models/casting.js';
 
 const router = Router();
 
