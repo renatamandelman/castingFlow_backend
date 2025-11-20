@@ -50,7 +50,7 @@ const modelSchema = new Schema({
   },
   profileImageUrl: {
     type: String,
-    default: 'https://t3.ftcdn.net/jpg/01/43/16/06/360_F_143160684_mlPlkWfuePOqO4QegNk1QeVm146Bku3N.jpg' // URL por defecto
+    default: 'Haleyjames.webp' // URL por defecto
   },
   portfolioLink: { 
     type: String,

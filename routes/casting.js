@@ -4,7 +4,6 @@ import Recruiter from '../models/recruiter.js';
 
 const router = Router();
 
-// POST /api/castings - Crea un nuevo casting
 router.post("/", async (req, res) => {
   const body = req.body;
   try {
@@ -31,7 +30,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET /api/castings - Obtiene todos los castings (activos)
 router.get("/", async (req, res) => {
   try {
     const castings = await Casting.find({ status: 'open' })
@@ -45,7 +43,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET /api/castings/:id - Obtiene un casting por su ID
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -63,7 +60,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// PUT /api/castings/:id - Actualiza un casting
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const body = req.body;
@@ -81,7 +77,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE /api/castings/:id - Elimina un casting
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -91,9 +86,7 @@ router.delete("/:id", async (req, res) => {
       return res.status(404).send({ message: "Casting no encontrado para eliminar."});
     }
 
-    // Opcional: Limpiar referencias
     await Recruiter.findByIdAndUpdate(deletedCasting.recruiter, { $pull: { postedCastings: id } });
-    // Faltaría eliminar las applications...
     
     return res.status(200).send({ message: "Casting eliminado", casting: deletedCasting });
   } catch (error) {
@@ -102,7 +95,6 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// GET /api/castings/recruiter/:recruiterId - Obtiene castings de un reclutador
 router.get("/recruiter/:recruiterId", async (req, res) => {
   const { recruiterId } = req.params;
   try {

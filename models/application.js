@@ -4,12 +4,13 @@ const applicationSchema = new Schema({
   
   status: { 
     type: String,
-    enum: ['pending', 'shortlisted', 'rejected'], 
-    default: 'pending'
+    enum: ['pendiente', 'preseleccionado', 'rechazado', 'aceptado'], 
+    default: 'pendiente'
   },
   message: { // Mensaje opcional del modelo al reclutador
     type: String,
     trim: true,
+    default: 'hola como estas',
     maxlength: [500, 'El mensaje no puede exceder los 500 caracteres.']
   },
   submittedPhotos: { 

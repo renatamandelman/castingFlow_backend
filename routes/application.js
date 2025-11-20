@@ -43,7 +43,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET /api/applications - Obtiene todas las aplicaciones
 router.get("/", async (req, res) => {
   try {
     const applications = await Application.find()
@@ -57,7 +56,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET /api/applications/:id - Obtiene una aplicación por su ID
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -76,7 +74,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// PUT /api/applications/:id - Actualiza una aplicación (ej. el 'status')
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const body = req.body; // Esperando algo como { "status": "shortlisted" }
@@ -94,7 +91,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE /api/applications/:id - Elimina una aplicación
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -125,8 +121,7 @@ router.get("/model/:modelId", async (req, res) => {
     const applications = await Application.find({ model: modelId })
       .populate({
           path: 'casting',
-          select: 'title description payRate recruiter',
-          populate: { path: 'recruiter', select: 'companyName' } // Populate anidado
+          populate: { path: 'recruiter' } 
       })
       .sort({ createdAt: -1 });
     
