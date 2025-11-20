@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const castings = await Casting.find({ status: 'open' })
-      .populate('recruiter', 'companyName companyLogoUrl')
+      .populate('recruiter')
       .sort({ createdAt: -1 });
     
     return res.status(200).send({ message: "Castings encontrados", castings });
@@ -47,7 +47,7 @@ router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const casting = await Casting.findById(id)
-      .populate('recruiter', 'companyName companyLogoUrl companyDescription');
+      .populate('recruiter');
     
     if (!casting) {
       return res.status(404).send({ message: "Casting no encontrado." });
